@@ -43,6 +43,7 @@ function onPictureSearch(evt) {
         `Hooray! We found ${totalHits} images.`
       );
       if (totalPages <= 1) {
+        galleryLightbox.refresh();
         return NotiflixService.showMessageInfo(
           "We're sorry, but you've reached the end of search results."
         );
