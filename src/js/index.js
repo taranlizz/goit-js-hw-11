@@ -31,6 +31,7 @@ function onPictureSearch(evt) {
   pixApiService
     .fetchPictures()
     .then(({ hits, totalHits }) => {
+      const totalPages = totalHits / pixApiService.perPage;
       clearGalleryMarkup();
       if (!hits.length) {
         return NotiflixService.showMessageWarning(
@@ -41,6 +42,11 @@ function onPictureSearch(evt) {
       NotiflixService.showMessageSuccess(
         `Hooray! We found ${totalHits} images.`
       );
+      if (totalPages <= 1) {
+        return NotiflixService.showMessageInfo(
+          "We're sorry, but you've reached the end of search results."
+        );
+      }
       pixApiService.incrementPage();
       selectors.loadBtn.classList.remove('is-hidden');
       galleryLightbox.refresh();
