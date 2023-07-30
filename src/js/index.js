@@ -59,7 +59,7 @@ function onLoadMore() {
   pixApiService
     .fetchPictures()
     .then(({ hits, totalHits }) => {
-      totalPages = totalHits / pixApiService.perPage;
+      const totalPages = totalHits / pixApiService.perPage;
       if (pixApiService.page > totalPages) {
         selectors.loadBtn.classList.add('is-hidden');
         NotiflixService.showMessageInfo(
@@ -70,6 +70,11 @@ function onLoadMore() {
       pixApiService.incrementPage();
       galleryLightbox.refresh();
     })
+    .catch(_ =>
+      NotiflixService.showMessageFailure(
+        'Oops! Something went wrong! Try reloading the page!'
+      )
+    );
 }
 
 function createGalleryMarkup(pictures) {
