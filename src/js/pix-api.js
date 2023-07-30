@@ -20,8 +20,8 @@ export default class PixApiService {
       per_page: this.perPage,
       page: this.page,
     });
-    const { data } = await axios.get(`${BASE_URL}?${params}`);
-    return data;
+    const response = await axios.get(`${BASE_URL}?${params}`);
+    return response.data;
   }
 
   incrementPage() {

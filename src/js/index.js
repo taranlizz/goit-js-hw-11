@@ -70,11 +70,6 @@ function onLoadMore() {
       pixApiService.incrementPage();
       galleryLightbox.refresh();
     })
-    .catch(_ =>
-      NotiflixService.showMessageFailure(
-        'Oops! Something went wrong! Try reloading the page!'
-      )
-    );
 }
 
 function createGalleryMarkup(pictures) {
